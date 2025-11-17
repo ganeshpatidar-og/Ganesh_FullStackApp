@@ -270,5 +270,23 @@ def admin_subscribers():
     subs = NewsletterSubscriber.query.all()
     return render_template("admin_subscribers.html", subscribers=subs)
 
+# ---- Auto create DB + admin on startup ----
+with app.app_context():
+    db.create_all()
+
+    # Create default admin only once
+    if not AdminUser.query.filter_by(username="admin").first():
+        pw_hash = bcrypt.generate_password_hash("admin123").decode("utf-8")
+        admin = AdminUser(username="admin", password_hash=pw_hash)
+        db.session.add(admin)
+        db.session.commit()
+        print("✔ Default admin auto-created: admin / admin123")
+    else:
+        print("✔ Admin already exists — skipping auto creation")
+
+# ---- Run Flask (Render compatible) ----
 if __name__ == "__main__":
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
