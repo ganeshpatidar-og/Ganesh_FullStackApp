@@ -8,12 +8,13 @@ load_dotenv()
 class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", "fallback-secret-key")
 
-    MYSQL_USER = os.getenv("MYSQL_USER", "root")
-    MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD", "")
-    MYSQL_DB = os.getenv("MYSQL_DB", "flipper_db")
-
+    # MYSQL_USER = os.getenv("MYSQL_USER", "root")
+    # MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD", "")
+    # MYSQL_DB = os.getenv("MYSQL_DB", "flipper_db")
+    MYSQL_URL = os.getenv("MYSQL_URL")
     SQLALCHEMY_DATABASE_URI = (
-        f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@localhost/{MYSQL_DB}"
+        # f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@localhost/{MYSQL_DB}"
+        MYSQL_URL
     )
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
