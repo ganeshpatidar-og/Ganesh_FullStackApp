@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Contact · Flipper Agency{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <h2>Let’s work together</h2>
+      <p>
+        Tell us a bit about your project and how we can help. We usually respond
+        within one business day.
+      </p>
+
+      <div class="contact-highlight">
+        <p><strong>Email:</strong> hello@flipper-agency.com</p>
+        <p><strong>Location:</strong> Remote · Available worldwide</p>
+      </div>
+
+      <ul class="contact-points">
+        <li>Product UI/UX design</li>
+        <li>Website & web app development</li>
+        <li>Branding and visual identity</li>
+      </ul>
+    </div>
+
+    <div class="contact-form-card">
+      <h3>Contact Form</h3>
+      <form method="post" action="{{ url_for('contact') }}">
+        <div class="form-row">
+          <input type="text" name="full_name" placeholder="Full Name" required />
+        </div>
+        <div class="form-row">
+          <input type="email" name="email" placeholder="Email" required />
+        </div>
+        <div class="form-row">
+          <input type="text" name="mobile" placeholder="Contact No (optional)" />
+        </div>
+        <div class="form-row">
+          <input type="text" name="city" placeholder="City (optional)" />
+        </div>
+        <button type="submit" class="btn primary full">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

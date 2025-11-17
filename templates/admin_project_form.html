@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if project else 'New' }} Project · Admin{% endblock %}
+
+{% block content %}
+<section class="section">
+  <h2>{{ 'Edit' if project else 'New' }} Project</h2>
+  <form method="post" enctype="multipart/form-data">
+    <div class="form-row">
+      <input name="name" placeholder="Project Name"
+             value="{{ project.name if project else '' }}" required />
+    </div>
+    <div class="form-row">
+      <textarea name="description" placeholder="Description" rows="4" required>
+        {{ project.description if project else '' }}
+      </textarea>
+    </div>
+    <div class="form-row">
+      <label>Image:</label>
+      <input type="file" name="image" />
+    </div>
+    {% if project and project.image %}
+      <p class="muted small">Current image:</p>
+      <img src="{{ url_for('static', filename='uploads/' ~ project.image) }}" width="120" />
+    {% endif %}
+    <button type="submit" class="btn primary full" style="margin-top: 10px;">Save</button>
+  </form>
+</section>
+{% endblock %}

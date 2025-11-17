@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard · Flipper{% endblock %}
+
+{% block content %}
+<section class="section">
+  <h2>Admin Dashboard</h2>
+
+  <div class="dashboard-cards">
+    <div class="dash-card">
+      <h3>Total Projects</h3>
+      <p>{{ project_count }}</p>
+    </div>
+    <div class="dash-card">
+      <h3>Total Clients</h3>
+      <p>{{ client_count }}</p>
+    </div>
+    <div class="dash-card">
+      <h3>Total Contacts</h3>
+      <p>{{ contact_count }}</p>
+    </div>
+    <div class="dash-card">
+      <h3>Total Subscribers</h3>
+      <p>{{ sub_count }}</p>
+    </div>
+  </div>
+
+  <br /><br />
+
+  <h3>Quick Actions</h3>
+  <ul class="admin-links">
+    <li><a href="{{ url_for('admin_projects') }}">Manage Projects</a></li>
+    <li><a href="{{ url_for('admin_clients') }}">Manage Clients</a></li>
+    <li><a href="{{ url_for('admin_contacts') }}">View Contact Messages</a></li>
+    <li><a href="{{ url_for('admin_subscribers') }}">View Subscribers</a></li>
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+  </ul>
+</section>
+{% endblock %}

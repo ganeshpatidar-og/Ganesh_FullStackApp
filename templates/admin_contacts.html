@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Admin · Contacts{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="section-header">
+    <h2>Contact Messages</h2>
+    <p>Leads collected from the contact form.</p>
+  </div>
+
+  <table class="admin-table">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>City</th>
+    </tr>
+
+    {% for m in contacts %}
+    <tr>
+      <td>{{ m.id }}</td>
+      <td>{{ m.full_name }}</td>
+      <td>{{ m.email }}</td>
+      <td>{{ m.mobile }}</td>
+      <td>{{ m.city }}</td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="5">No contact messages yet.</td>
+    </tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}

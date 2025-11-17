@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Admin Login · Flipper{% endblock %}
+
+{% block content %}
+<section class="section center-section">
+  <div class="auth-card">
+    <h2>Admin Login</h2>
+    <p class="muted small">Secure access to content management.</p>
+    <form method="post">
+      <div class="form-row">
+        <input name="username" placeholder="Username" required />
+      </div>
+      <div class="form-row">
+        <input type="password" name="password" placeholder="Password" required />
+      </div>
+      <button type="submit" class="btn primary full">Login</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Projects · Flipper Agency{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="section-header">
+    <h2>Our Projects</h2>
+    <p>Take a look at some of the work we’ve delivered for our clients.</p>
+  </div>
+
+  <div class="grid">
+    {% for p in projects %}
+      <article class="card project-card">
+        {% if p.image %}
+          <div class="project-image">
+            <img src="{{ url_for('static', filename='uploads/' ~ p.image) }}" alt="{{ p.name }}" />
+          </div>
+        {% endif %}
+        <div class="project-body">
+          <h3>{{ p.name }}</h3>
+          <p class="muted">{{ p.description }}</p>
+        </div>
+      </article>
+    {% else %}
+      <p class="muted">No projects yet. Use the admin panel to add projects.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Admin · Subscribers{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="section-header">
+    <h2>Newsletter Subscribers</h2>
+    <p>Emails collected from the homepage newsletter form.</p>
+  </div>
+
+  <table class="admin-table">
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+    </tr>
+
+    {% for s in subscribers %}
+    <tr>
+      <td>{{ s.id }}</td>
+      <td>{{ s.email }}</td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="2">No subscribers yet.</td>
+    </tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}

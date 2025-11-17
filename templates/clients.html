@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Clients · Flipper Agency{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="section-header">
+    <h2>Clients</h2>
+    <p>Brands and businesses we’ve partnered with.</p>
+  </div>
+
+  <ul class="client-list">
+    {% for c in clients %}
+      <li class="client-list-item">
+        <div class="client-list-main">
+          <strong>{{ c.name }}</strong>
+          {% if c.designation %}
+            <span class="muted"> – {{ c.designation }}</span>
+          {% endif %}
+        </div>
+        {% if c.description %}
+          <p class="muted small">{{ c.description }}</p>
+        {% endif %}
+      </li>
+    {% else %}
+      <p class="muted">No clients yet.</p>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Home · Flipper Agency{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>We Build Digital Experiences That <span>Flip</span> Your Business Growth</h1>
+    <p>
+      Flipper is a modern creative agency helping brands design, build and launch
+      beautiful products that users love.
+    </p>
+    <div class="hero-actions">
+      <a href="{{ url_for('public_projects') }}" class="btn primary">View Our Projects</a>
+      <a href="{{ url_for('contact') }}" class="btn ghost">Let’s Talk</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <h3>{{ clients|length }}</h3>
+        <span>Happy Clients</span>
+      </div>
+      <div class="stat">
+        <h3>{{ projects|length }}</h3>
+        <span>Projects Delivered</span>
+      </div>
+      <div class="stat">
+        <h3>24/7</h3>
+        <span>Support</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <h3>Why brands choose Flipper</h3>
+    <ul>
+      <li>Modern, clean and responsive designs</li>
+      <li>Pixel perfect implementation</li>
+      <li>End-to-end project management</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <h2>Our Clients</h2>
+    <p>Real businesses, real impact. Here are some of the partners we’ve worked with.</p>
+  </div>
+
+  <div class="grid">
+    {% for c in clients %}
+      <article class="card client-card">
+        <div class="client-top">
+          {% if c.image %}
+            <img class="avatar" src="{{ url_for('static', filename='uploads/' ~ c.image) }}" alt="{{ c.name }}" />
+          {% else %}
+            <div class="avatar placeholder">{{ c.name[0] }}</div>
+          {% endif %}
+          <div>
+            <h3>{{ c.name }}</h3>
+            <p class="muted">{{ c.designation or "Client" }}</p>
+          </div>
+        </div>
+        <p class="client-quote">
+          {{ c.description or "Great experience working with Flipper Agency." }}
+        </p>
+      </article>
+    {% else %}
+      <p class="muted">No clients added yet. Use admin panel to add some.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-header">
+    <h2>Happy Clients</h2>
+    <p>Some of the brands that trust us.</p>
+  </div>
+  <div class="chip-row">
+    {% for c in clients %}
+      <span class="chip">{{ c.name }}</span>
+    {% else %}
+      <p class="muted">No clients yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="newsletter">
+    <div>
+      <h2>Stay ahead with our updates</h2>
+      <p>Get case studies, design tips and product updates directly to your inbox.</p>
+    </div>
+    <form class="newsletter-form" method="post" action="{{ url_for('subscribe') }}">
+      <input type="email" name="email" placeholder="Enter your email" required />
+      <button type="submit" class="btn primary">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

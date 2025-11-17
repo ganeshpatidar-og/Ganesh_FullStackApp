@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if client else 'New' }} Client{% endblock %}
+
+{% block content %}
+<section class="section">
+  <h2>{{ 'Edit' if client else 'New' }} Client</h2>
+
+  <!-- EXPLICIT: POST to /admin/clients/new when adding -->
+  {% if client %}
+    <form method="post" enctype="multipart/form-data">
+  {% else %}
+    <form method="post" action="{{ url_for('admin_clients_new') }}" enctype="multipart/form-data">
+  {% endif %}
+
+    <div class="form-row">
+      <input type="text" name="name" placeholder="Client Name"
+             value="{{ client.name if client else '' }}" required />
+    </div>
+
+    <div class="form-row">
+      <input type="text" name="designation" placeholder="Designation / Role"
+             value="{{ client.designation if client else '' }}" />
+    </div>
+
+    <div class="form-row">
+      <textarea name="description" placeholder="Description / Feedback" rows="4">{{ client.description if client else '' }}</textarea>
+    </div>
+
+    <div class="form-row">
+      <label>Upload Image</label>
+      <input type="file" name="image" />
+    </div>
+
+    {% if client and client.image %}
+      <p class="muted small">Current image:</p>
+      <img src="{{ url_for('static', filename='uploads/' ~ client.image) }}" width="140" />
+    {% endif %}
+
+    <button type="submit" class="btn primary" style="margin-top: 10px;">Save</button>
+  </form>
+</section>
+{% endblock %}
